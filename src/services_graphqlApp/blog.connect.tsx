@@ -3,8 +3,11 @@ import axios from "axios";
 import { print } from "graphql";
 import { settings } from "../config";
 
-export const getBlogs = async () => {
+export const getBlogs = async (blogTitle: string) => {
   const token = sessionStorage["token"];
+  if (blogTitle===undefined) {
+    blogTitle=""
+  }
   const response = await axios({
     method: "POST",
     url: settings.server,
@@ -13,8 +16,8 @@ export const getBlogs = async () => {
     },
     data: {
       query: print(gql`
-        query {
-          allblogs(input: {}) {
+        query ($blogTitle: String!) {
+          allblogs(input: { blogTitle: $blogTitle }) {
             id
             blogTitle
             blogContent
@@ -22,9 +25,12 @@ export const getBlogs = async () => {
           }
         }
       `),
-      variables: {},
+      variables: {
+        blogTitle: blogTitle,
+      },
     },
   });
+  console.log(response.data)
   return response.data;
 };
 
@@ -76,17 +82,16 @@ export const deleteBlog = async (id) => {
 };
 
 export const createOrUpdateBlog = async (
-  
   blogTitle: string,
   blogContent: string,
   blogTags: string,
   id?: string
 ) => {
-  console.log(blogTitle)
+  console.log(blogTitle);
   const token = sessionStorage["token"];
-  console.log(token)
-  if (id===undefined){
-    id=""
+  console.log(token);
+  if (id === undefined) {
+    id = "";
   }
   const response = await axios({
     method: "POST",
@@ -97,15 +102,14 @@ export const createOrUpdateBlog = async (
     data: {
       query: print(gql`
         mutation (
-          $id:String!,
-          $blogTitle: String!,
-          $blogContent: String!,
+          $id: String!
+          $blogTitle: String!
+          $blogContent: String!
           $blogTags: String!
-          
         ) {
           createOrUpdateBlog(
             input: {
-              id:$id
+              id: $id
               blogTitle: $blogTitle
               blogContent: $blogContent
               blogTags: $blogTags
@@ -119,20 +123,19 @@ export const createOrUpdateBlog = async (
         }
       `),
       variables: {
-        id:id,
+        id: id,
         blogTitle: blogTitle,
         blogContent: blogContent,
         blogTags: blogTags,
-      
       },
     },
   });
-  console.log(response.data)
+  console.log(response.data);
   return response.data;
 };
 
 export const blogById = async (id) => {
-  console.log(id)
+  console.log(id);
   const token = sessionStorage["token"];
   const response = await axios({
     method: "POST",

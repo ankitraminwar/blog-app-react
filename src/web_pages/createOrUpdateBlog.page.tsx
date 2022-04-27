@@ -1,8 +1,6 @@
 import { useState } from "react";
-import { Link, useNavigate} from "react-router-dom";
-import {
-  createOrUpdateBlog,
-} from "../services_graphqlApp/blog.connect";
+import { Link, useNavigate } from "react-router-dom";
+import { createOrUpdateBlog } from "../services_graphqlApp/blog.connect";
 
 const CreateOrUpdateBlog = (props: any) => {
   const [blogTitle, setBlogTitle] = useState("");
@@ -10,8 +8,6 @@ const CreateOrUpdateBlog = (props: any) => {
   const [blogContent, setBlogContent] = useState("");
 
   const navigate = useNavigate();
-
-
 
   const onCreateUpdateBlog = async () => {
     if (blogTitle.length === 0) {
@@ -58,30 +54,53 @@ const CreateOrUpdateBlog = (props: any) => {
 
         <div className="mb-3">
           <label className="form-label">Blog Tags</label>
-          <input
-            onChange={(e) => {
-              setBlogTags(e.target.value);
+          <button
+            className="btn btn-sm btn-primary m-2"
+            value={"FOOD"}
+            onClick={(e) => {
+              setBlogTags("FOOD");
             }}
-            type="text"
-            className="form-control"
-          />{" "}
-          {/*<div className="m-3 p-2">
-                        <input onChange={(e) => {
-                            setBlogTags(e.target.value)
-                        }} type="radio" value="NEWS" name="blogTags" /> NEWS
-                        <input onChange={(e) => {
-                            setBlogTags(e.target.value)
-                        }} type="radio" value="SPORTS" name="blogTags" /> SPORTS
-                        <input onChange={(e) => {
-                            setBlogTags(e.target.value)
-                        }} type="radio" value="FINANCE" name="blogTags" /> FINANCE
-                        <input onChange={(e) => {
-                            setBlogTags(e.target.value)
-                        }} type="radio" value="FOOD" name="blogTags" /> FOOD
-                        <input onChange={(e) => {
-                            setBlogTags(e.target.value)
-                        }} type="radio" value="TRAVEL" name="blogTags" /> TRAVEL
-                    </div>*/}
+          >
+            FOOD
+          </button>
+
+          <button
+            className="btn btn-sm btn-info m-2"
+            value={"SPORTS"}
+            onClick={(e) => {
+              setBlogTags("SPORTS");
+            }}
+          >
+            SPORTS
+          </button>
+          <button
+            className="btn btn-sm btn-warning m-2"
+            value={"TRAVEL"}
+            onClick={(e) => {
+              setBlogTags("TRAVEL");
+            }}
+          >
+            SPORTS
+          </button>
+
+          <button
+            className="btn btn-sm btn-secondary m-2"
+            value={"NEWS"}
+            onClick={(e) => {
+              setBlogTags("NEWS");
+            }}
+          >
+            NEWS
+          </button>
+          <button
+            className="btn btn-sm btn-success m-2"
+            value={"FINANCE"}
+            onClick={(e) => {
+              setBlogTags("FINANCE");
+            }}
+          >
+            NEWS
+          </button>
         </div>
 
         <div className="header mb-3 m-2">

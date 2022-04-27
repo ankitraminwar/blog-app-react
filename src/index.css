@@ -15,6 +15,7 @@ code {
 .header {
   text-align: center;
   align-items: center;
+  font-style: italic;
 }
 .container_b {
   box-sizing: border-box;
