@@ -81,10 +81,39 @@ export const profileDel = async () => {
         }
       `),
       variables: {
-        
+
       },
     },
   });
- 
+
+  return response.data;
+};
+
+export const profileUpdate = async (email: string, firstName: string, lastName: string) => {
+  const token = sessionStorage["token"];
+  const response = await axios({
+    method: "POST",
+    url: settings.server,
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    data: {
+      query: print(gql`
+        mutation ($email:String!, $firstName:String!, $lastName:String!) {
+          updateProfile(input:{email: $email, firstName: $firstName, lastName: $lastName}) {
+            email
+            firstName
+            lastName
+          }
+        }
+      `),
+      variables: {
+        email: email,
+        firstName: firstName,
+        lastName: lastName,
+      },
+    },
+  });
+
   return response.data;
 };

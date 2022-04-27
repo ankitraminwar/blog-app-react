@@ -37,7 +37,7 @@ const MyBlogPage = (props) => {
                     <p className="card-text">{blogContent}</p>
                 </div>
                 <div style={{float:'right'}}>
-                    <a href={`/createOrUpdate-blog/${id}`} className="btn btn-sm m-2 btn-outline-primary">Update Blog</a>
+                    <a href={`/Update-blog/${id}`} className="btn btn-sm m-2 btn-outline-primary">Update Blog</a>
                     <button onClick={() => delBlog(id)} className="btn btn-sm m-2 btn-outline-primary">Delete Blog</button>
                 </div>
             </div>

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { profileDel } from "../services_graphqlApp/user.connect";
+import { useNavigate } from "react-router-dom";
+import { profileDel, profileUpdate } from "../services_graphqlApp/user.connect";
 
 const ProfilePage = (props: any) => {
   const [profile, setProfile] = useState({
@@ -8,27 +9,37 @@ const ProfilePage = (props: any) => {
     lastName: "",
   });
 
+  const navigate = useNavigate();
+
   const { email, firstName, lastName } = profile;
   const onInputchange = (e) => {
-    setProfile({ ...profile, [e.target.email]: e.target.value });
+    setProfile({ ...profile, [e.target.name]: e.target.value });
   };
-
+console.log(email)
   useEffect(() => {
     loadProfile();
   }, []);
 
   const loadProfile = async () => {
     const result = await profileDel();
-    console.log(result);
+    console.log(result.data);
     if (result.data) {
       setProfile(result.data.profile);
+    }
+  };
+
+  const updatePro = async () => {
+    const result = await profileUpdate(email, firstName, lastName);
+    console.log(result)
+    if (result) {
+      navigate('/Home')
     }
   };
 
   sessionStorage['firstName'] =firstName
   sessionStorage['lastName'] =lastName
   return (
-    <div className="container_b">
+    <div className="container_b" >
       <h1 className="header">Profile</h1>
 
       <div className="form">
@@ -39,6 +50,7 @@ const ProfilePage = (props: any) => {
             name="email"
             value={email}
             onChange={(e) => {onInputchange(e)}}
+            className="form-control"
           />
         </div>
 
@@ -49,6 +61,7 @@ const ProfilePage = (props: any) => {
             name="firstName"
             value={firstName}
             onChange={e => onInputchange(e)}
+            className="form-control"
           />
         </div>
 
@@ -59,12 +72,13 @@ const ProfilePage = (props: any) => {
             value={lastName}
             onChange={e => onInputchange(e)}
             type="text"
+            className="form-control"
             
           />
         </div>
 
         <div className="header mb-3 m-2">
-          <button className="btn btn-primary">
+          <button className="btn btn-primary" onClick={updatePro}>
             Update Profile
           </button>
         </div>

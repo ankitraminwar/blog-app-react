@@ -76,14 +76,18 @@ export const deleteBlog = async (id) => {
 };
 
 export const createOrUpdateBlog = async (
-  //id:string,
-  blogTitle:string,
+  
+  blogTitle: string,
   blogContent: string,
-  blogTags: string
+  blogTags: string,
+  id?: string
 ) => {
   console.log(blogTitle)
   const token = sessionStorage["token"];
   console.log(token)
+  if (id===undefined){
+    id=""
+  }
   const response = await axios({
     method: "POST",
     url: settings.server,
@@ -93,14 +97,15 @@ export const createOrUpdateBlog = async (
     data: {
       query: print(gql`
         mutation (
-  
+          $id:String!,
           $blogTitle: String!,
           $blogContent: String!,
           $blogTags: String!
+          
         ) {
           createOrUpdateBlog(
             input: {
-            
+              id:$id
               blogTitle: $blogTitle
               blogContent: $blogContent
               blogTags: $blogTags
@@ -114,10 +119,11 @@ export const createOrUpdateBlog = async (
         }
       `),
       variables: {
-    
+        id:id,
         blogTitle: blogTitle,
         blogContent: blogContent,
         blogTags: blogTags,
+      
       },
     },
   });
@@ -126,6 +132,7 @@ export const createOrUpdateBlog = async (
 };
 
 export const blogById = async (id) => {
+  console.log(id)
   const token = sessionStorage["token"];
   const response = await axios({
     method: "POST",

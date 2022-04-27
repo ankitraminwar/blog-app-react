@@ -24,6 +24,16 @@ code {
   padding: 30px;
   background: white;
 }
+
+.container_a {
+  width: 80%;
+  box-sizing: border-box;
+  border: 2px solid #1C8EF9;
+  border-radius: 15px;
+  margin: 35px;
+  padding: 30px;
+  background: white;
+}
 label {
   font-weight: bold;
 }
@@ -33,13 +43,3 @@ label {
   float: right;
 }
 
-input {
-    width: 100%;
-    background: #FFFFFF;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: solid rgb(201, 205, 206);
-    border-radius: 4px;
-    cursor: pointer;
-}

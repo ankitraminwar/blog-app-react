@@ -1,36 +1,17 @@
-import { useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useState } from "react";
+import { Link, useNavigate} from "react-router-dom";
 import {
-  blogById,
   createOrUpdateBlog,
 } from "../services_graphqlApp/blog.connect";
 
 const CreateOrUpdateBlog = (props: any) => {
-  const [blog, setBlog] = useState([
-    { blogTitle: "", blogContent: "", blogTags: "" },
-  ]);
-
   const [blogTitle, setBlogTitle] = useState("");
   const [blogTags, setBlogTags] = useState("");
   const [blogContent, setBlogContent] = useState("");
 
-  const id = useParams();
-
   const navigate = useNavigate();
 
-  useEffect(() => {
-    loadBlogs();
-  }, []);
 
-  const loadBlogs = async () => {
-    if (id !== null) {
-      const result = await blogById(id);
-      console.log(result);
-      if (result) {
-        setBlog(result);
-      }
-    }
-  };
 
   const onCreateUpdateBlog = async () => {
     if (blogTitle.length === 0) {
