@@ -16,8 +16,8 @@ function App() {
        <Route path='/' element={<SignInPage/>}/>
        <Route path='/Home' element={<BlogHomePage/>}/>
        <Route path='/SignUp' element= {<SignUpPage/>}/>
-       <Route path='/Update-blog/:id' element={<UpdateBlog/>}/>
-       <Route path='/createOrUpdate-blog' element={<CreateOrUpdateBlog/>}/>
+       <Route path='/blogs/:id' element={<UpdateBlog/>}/>
+       <Route path='/blogs/add' element={<CreateOrUpdateBlog/>}/>
        <Route path='/profile' element={<ProfilePage/>}/>
        <Route path='/my-blogs' element={<MyBlogPage/>}/>
        

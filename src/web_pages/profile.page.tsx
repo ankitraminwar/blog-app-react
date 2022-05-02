@@ -51,6 +51,7 @@ console.log(email)
             value={email}
             onChange={(e) => {onInputchange(e)}}
             className="form-control"
+            readOnly
           />
         </div>
 
@@ -79,7 +80,7 @@ console.log(email)
 
         <div className="header mb-3 m-2">
           <button className="btn btn-primary" onClick={updatePro}>
-            Update Profile
+            Update
           </button>
         </div>
       </div>

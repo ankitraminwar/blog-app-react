@@ -3,10 +3,10 @@ import axios from "axios";
 import { print } from "graphql";
 import { settings } from "../config";
 
-export const getBlogs = async (blogTitle: string) => {
+export const getBlogs = async (blogTitle: string, blogTags: string) => {
   const token = sessionStorage["token"];
-  if (blogTitle===undefined) {
-    blogTitle=""
+  if (blogTitle === undefined) {
+    blogTitle = "";
   }
   const response = await axios({
     method: "POST",
@@ -16,8 +16,8 @@ export const getBlogs = async (blogTitle: string) => {
     },
     data: {
       query: print(gql`
-        query ($blogTitle: String!) {
-          allblogs(input: { blogTitle: $blogTitle }) {
+        query ($blogTitle: String!, $blogTags: String!) {
+          allblogs(input: { blogTitle: $blogTitle, blogTags: $blogTags }) {
             id
             blogTitle
             blogContent
@@ -27,10 +27,10 @@ export const getBlogs = async (blogTitle: string) => {
       `),
       variables: {
         blogTitle: blogTitle,
+        blogTags:blogTags,
       },
     },
   });
-  console.log(response.data)
   return response.data;
 };
 
@@ -87,9 +87,7 @@ export const createOrUpdateBlog = async (
   blogTags: string,
   id?: string
 ) => {
-  console.log(blogTitle);
   const token = sessionStorage["token"];
-  console.log(token);
   if (id === undefined) {
     id = "";
   }
@@ -130,12 +128,10 @@ export const createOrUpdateBlog = async (
       },
     },
   });
-  console.log(response.data);
   return response.data;
 };
 
 export const blogById = async (id) => {
-  console.log(id);
   const token = sessionStorage["token"];
   const response = await axios({
     method: "POST",

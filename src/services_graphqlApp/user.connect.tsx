@@ -4,7 +4,6 @@ import { print } from "graphql";
 import { settings } from "../config";
 
 export const signin = async (email, password) => {
-  //console.log(email,password)
   const response = await axios({
     method: "POST",
     url: settings.server,
@@ -22,7 +21,6 @@ export const signin = async (email, password) => {
       },
     },
   });
-  //console.log(response.data.signin.token)
   return response;
 };
 
@@ -85,7 +83,6 @@ export const profileDel = async () => {
       },
     },
   });
-
   return response.data;
 };
 
@@ -114,6 +111,5 @@ export const profileUpdate = async (email: string, firstName: string, lastName: 
       },
     },
   });
-
   return response.data;
 };

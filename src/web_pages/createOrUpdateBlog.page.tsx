@@ -26,7 +26,7 @@ const CreateOrUpdateBlog = (props: any) => {
 
   return (
     <div className="container_b">
-      <h1 className="header">Create Or Update Blog</h1>
+      <h1 className="header">Create Blog</h1>
 
       <div className="form">
         <div className="mb-3">
@@ -99,13 +99,49 @@ const CreateOrUpdateBlog = (props: any) => {
               setBlogTags("FINANCE");
             }}
           >
-            NEWS
+            FINANCE
+          </button>
+          <button
+            className="btn btn-sm btn-danger m-2"
+            value={"CRYPTO"}
+            onClick={(e) => {
+              setBlogTags("CRYPTO");
+            }}
+          >
+            CRYPTO
+          </button>
+          <button
+            className="btn btn-sm btn-dark m-2"
+            value={"ART"}
+            onClick={(e) => {
+              setBlogTags("ART");
+            }}
+          >
+            ART
+          </button>
+          <button
+            className="btn btn-sm btn-warning m-2"
+            value={"STARTUP"}
+            onClick={(e) => {
+              setBlogTags("STARTUP");
+            }}
+          >
+            STARTUP
+          </button>
+          <button
+            className="btn btn-sm btn-info m-2"
+            value={"STOCKS"}
+            onClick={(e) => {
+              setBlogTags("STOCKS");
+            }}
+          >
+            STOCKS
           </button>
         </div>
 
         <div className="header mb-3 m-2">
           <button onClick={onCreateUpdateBlog} className="btn btn-primary">
-            Create Or Update Blog
+            Create
           </button>
           <Link
             to="/Home"

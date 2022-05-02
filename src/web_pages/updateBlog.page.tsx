@@ -43,7 +43,7 @@ const UpdateBlog = (props: any) => {
 
     return (
         <div className="container_b">
-            <h1 className="header">Create Or Update Blog</h1>
+            <h1 className="header">Update Blog</h1>
 
             <div className="form">
                 <div className="mb-3">
@@ -82,29 +82,13 @@ const UpdateBlog = (props: any) => {
                         }}
                         type="text"
                         className="form-control"
+                        readOnly
                     />{" "}
-                    {/*<div className="m-3 p-2">
-                        <input onChange={(e) => {
-                            setBlogTags(e.target.value)
-                        }} type="radio" value="NEWS" name="blogTags" /> NEWS
-                        <input onChange={(e) => {
-                            setBlogTags(e.target.value)
-                        }} type="radio" value="SPORTS" name="blogTags" /> SPORTS
-                        <input onChange={(e) => {
-                            setBlogTags(e.target.value)
-                        }} type="radio" value="FINANCE" name="blogTags" /> FINANCE
-                        <input onChange={(e) => {
-                            setBlogTags(e.target.value)
-                        }} type="radio" value="FOOD" name="blogTags" /> FOOD
-                        <input onChange={(e) => {
-                            setBlogTags(e.target.value)
-                        }} type="radio" value="TRAVEL" name="blogTags" /> TRAVEL
-                    </div>*/}
                 </div>
 
                 <div className="header mb-3 m-2">
                     <button onClick={onUpdate} className="btn btn-primary">
-                        Create Or Update Blog
+                        Update
                     </button>
                     <Link
                         to="/my-blogs"
